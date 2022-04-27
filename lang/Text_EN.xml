@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<GameData>
+    <LocalizedText>
+        <Replace Tag="LOC_GAMEMODE_ONECITY_NAME" Language="en_US">
+            <Text>Three City Challenge Mode</Text>
+        </Replace>
+        <Replace Tag="LOC_GAMEMODE_ONECITY_DESCRIPTION" Language="en_US">
+            <Text>"Thee shall only have three cities..." [NEWLINE][NEWLINE]Plan ahead to build an unchallenged military center or a tower of Babel challenging your foes! [NEWLINE][NEWLINE]Cannot train Settler or keep captured cities.</Text>
+        </Replace>
+
+        <Row Tag="LOC_EXPANSIONIST_NAME" Language="en_US">
+            <Text>The Expansionist</Text>
+        </Row>
+        <Row Tag="LOC_EXPANSIONIST_DESC" Language="en_US">
+            <Text>Can build the Outer Wall improvement. [NEWLINE]Unlocked at Early Empire.[NEWLINE][NEWLINE]Increase your territory away from your borders to access resources or setup an outpost.</Text>
+        </Row>
+
+        <Replace Tag="LOC_MOMENT_CATEGORY_INFRASTRUCTURE_BONUS_GOLDEN_AGE" language="en">
+            <Text>Monumentality Golden Age:[NEWLINE]+2 [ICON_Movement] Movement for all Builders. May purchase civilian units with [ICON_Faith] Faith. Builders and Expansionists are 30% cheaper to purchase with [ICON_FAITH] Faith and [ICON_GOLD] Gold.</Text>
+        </Replace>
+         <Replace Tag="LOC_BELIEF_RELIGIOUS_SETTLEMENTS_DESCRIPTION" language="en">
+            <Text>When chosen receive two Expansionists in your capital. Border expansion rate is 15% faster.</Text>
+        </Replace>  
+         <Replace Tag="LOC_UNITCOMMAND_BUILDWALL_NAME" language="en">
+            <Text>Build a protective wall</Text>
+        </Replace> 
+         <Replace Tag="LOC_UNITCOMMAND_BUILDWALL_DESCRIPTION" language="en">
+           <Text>Provide defensive bonus to garnisson units and allow to claim territory outside of your city limits</Text>
+        </Replace> 
+         <Replace Tag="LOC_UNITCOMMAND_BUILDWALL_DISABLED_TT" language="en">
+            <Text>Cannot be build on claimed territory, impassable terrain, cities or districts</Text>
+        </Replace> 	
+         <Replace Tag="LOC_IMPROVEMENT_OCC_WALL_NAME" language="en">
+            <Text>Outer Walls</Text>
+        </Replace> 	
+         <Replace Tag="LOC_IMPROVEMENT_OCC_WALL_DESC" language="en">
+            <Text>Use this improvement to claim territory and protect your troups.</Text>
+        </Replace> 	
+		 <Replace Tag="LOC_SCENARIO_HUD_CHARGES" language="en">
+		    <Text>OUTER WALL CHARGES</Text>
+        </Replace> 	
+
+		<!--- Rally Point --->	
+		<Replace Tag="OCC_IMPROVEMENT_RALLY_POINT_NAME" language="en">
+		    <Text>Rally Point</Text>
+        </Replace> 	
+		<Replace Tag="OCC_IMPROVEMENT_RALLY_POINT_DESC" language="en">
+		    <Text>Define the location where unit waves would spawn.</Text>
+        </Replace>
+		 <Replace Tag="OCC_SETRALLY_COMMAND_TEXT" language="en">
+		    <Text>Rally Point Set!</Text>
+        </Replace>
+		 <Replace Tag="OCC_SETRALLY_REMOVE_TEXT" language="en">
+		    <Text>Rally Point Removed!</Text>
+        </Replace> 
+		 <Replace Tag="LOC_UNITCOMMAND_SETRALLY_NAME" language="en">
+		    <Text>Create a Rally Point</Text>
+        </Replace>	
+		 <Replace Tag="LOC_UNITCOMMAND_SETRALLY_DESCRIPTION" language="en">
+		    <Text>Must be a valid tile in your territory. [NEWLINE]Unit waves will spawn from that point.</Text>
+        </Replace>	
+		 <Replace Tag="LOC_UNITCOMMAND_SETRALLY_DISABLED_TT" language="en">
+		    <Text>Must be in your territory. [NEWLINE]Cannot be on a City, District or another Improvement</Text>
+        </Replace>			
+
+		<!--- Governors --->
+		<Replace  Tag="LOC_GOVERNOR_THE_EDUCATOR_DESCRIPTION"  language="en">
+			<Text>{LOC_GOVERNOR_THE_EDUCATOR_NAME} is focused on the cultivation of [ICON_SCIENCE] Scientific endeavors in the city. Be sure to combo him with good Campus placement to maximise your [ICON_SCIENCE] Science output.</Text>
+		</Replace> 
+		 <Replace Tag="OCC_THE_EDUCATOR_LEVEL_0_NAME" language="en">
+		    <Text>The Educator</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_EDUCATOR_LEVEL_1_NAME" language="en">
+		    <Text>College of Scholars</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_EDUCATOR_LEVEL_2_NAME" language="en">
+		    <Text>Ground Studies</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_EDUCATOR_LEVEL_3_NAME" language="en">
+		    <Text>City of Lights</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_EDUCATOR_LEVEL_0_DESC" language="en">
+		    <Text>+15% [ICON_Science] Science in your Capital</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_EDUCATOR_LEVEL_1_DESC" language="en">
+		    <Text>+10 [ICON_Science] Science</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_EDUCATOR_LEVEL_2_DESC" language="en">
+		    <Text>Requires Medieval Era, +1 [ICON_Science] Science on every land tiles</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_EDUCATOR_LEVEL_3_DESC" language="en">
+		    <Text>Requires Industrial Era, +25 [ICON_Science] Science</Text>
+        </Replace> 	
+
+		 <Replace Tag="OCC_THE_CARDINAL_LEVEL_0_NAME" language="en">
+		    <Text>The Cardinal</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_CARDINAL_LEVEL_1_NAME" language="en">
+		    <Text>Land of the Beautiful</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_CARDINAL_LEVEL_2_NAME" language="en">
+		    <Text>Holy Pope</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_CARDINAL_LEVEL_3_NAME" language="en">
+		    <Text>Patron of Arts</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_CARDINAL_LEVEL_0_DESC" language="en">
+		    <Text>+5 [ICON_GreatProphet] Great Prophet point</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_CARDINAL_LEVEL_1_DESC" language="en">
+		    <Text>+1 [ICON_Culture] Culture on every land tiles</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_CARDINAL_LEVEL_2_DESC" language="en">
+		    <Text>Requires Medieval Era, +25% [ICON_Faith] Faith in your Capital</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_CARDINAL_LEVEL_3_DESC" language="en">
+		    <Text>Requires Industrial Era, +200% [ICON_Tourism] Tourism in your Empire</Text>		
+        </Replace> 	
+
+		 <Replace Tag="OCC_THE_BUILDER_LEVEL_0_NAME" language="en">
+		    <Text>The Surveyor</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_BUILDER_LEVEL_1_NAME" language="en">
+		    <Text>Building Plan</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_BUILDER_LEVEL_2_NAME" language="en">
+		    <Text>Urbanism</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_BUILDER_LEVEL_3_NAME" language="en">
+		    <Text>Cornucopia</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_BUILDER_LEVEL_0_DESC" language="en">
+		    <Text>+5 [ICON_Food] Food in your Capital</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_BUILDER_LEVEL_1_DESC" language="en">
+		    <Text>+25% [ICON_Production] Production toward Districts</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_BUILDER_LEVEL_2_DESC" language="en">
+		    <Text>Requires Medieval Era, Grant access to the {LOC_IMPROVEMENT_CITY_PARK_NAME} </Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_BUILDER_LEVEL_3_DESC" language="en">
+		    <Text>+25 [ICON_Food] Food in your Capital</Text>		
+        </Replace> 
+
+		 <Replace Tag="OCC_THE_MERCHANT_LEVEL_0_NAME" language="en">
+		    <Text>The Financier</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_MERCHANT_LEVEL_1_NAME" language="en">
+		    <Text>Trade Center</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_MERCHANT_LEVEL_2_NAME" language="en">
+		    <Text>Regional Market</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_MERCHANT_LEVEL_3_NAME" language="en">
+		    <Text>Science Funding</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_MERCHANT_LEVEL_0_DESC" language="en">
+		    <Text>+7 [ICON_Gold] Gold in your Capital</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_MERCHANT_LEVEL_1_DESC" language="en">
+		    <Text>+5 [ICON_Gold] Gold and +2 [ICON_Science] Science for each Trade Route</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_MERCHANT_LEVEL_2_DESC" language="en">
+		    <Text>Requires Medieval Era, +150% [ICON_Gold] Gold Adjacency on Commercial Hub District</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_MERCHANT_LEVEL_3_DESC" language="en">
+		    <Text>Requires Industrial Era, Commercial Hub District has bonus [ICON_Science] Science equals to its [ICON_Gold] Gold Adjacency</Text>		
+        </Replace>		
+		
+		 <Replace Tag="OCC_THE_RESOURCE_MANAGER_LEVEL_0_NAME" language="en">
+		    <Text>The Stewart</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_RESOURCE_MANAGER_LEVEL_1_NAME" language="en">
+		    <Text>Production Center</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_RESOURCE_MANAGER_LEVEL_2_NAME" language="en">
+		    <Text>Productive Ground</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_RESOURCE_MANAGER_LEVEL_3_NAME" language="en">
+		    <Text>The One Turner</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_RESOURCE_MANAGER_LEVEL_0_DESC" language="en">
+		    <Text>+4 [ICON_Production] Production in your Capital</Text>
+        </Replace> 
+		 <Replace Tag="OCC_THE_RESOURCE_MANAGER_LEVEL_1_DESC" language="en">
+		    <Text>+3 [ICON_Food] Food and +3 [ICON_Production] Production for each Trade Route</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_RESOURCE_MANAGER_LEVEL_2_DESC" language="en">
+		    <Text>Requires Medieval Era, +1 [ICON_Production] Production on every tile of your Empire</Text>
+        </Replace> 	
+		 <Replace Tag="OCC_THE_RESOURCE_MANAGER_LEVEL_3_DESC" language="en">
+		    <Text>Requires Industrial Era, +50% [ICON_Production] Production in your Capital</Text>		
+        </Replace>	
+    </LocalizedText>
+</GameData>
