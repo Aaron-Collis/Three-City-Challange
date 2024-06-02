@@ -124,7 +124,7 @@ function OnGameTurnStarted_OneCity(turn)
 			b_wave = true
 		end
 	end
-	
+	b_wave = false
 	if b_wave == true or turn == ms_ScoutWaveTurn then
 		OnWaveTriggered(turn)
 	end
@@ -247,7 +247,7 @@ function OneCity_Init()
 			local pPlayerGovernors = pPlayer:GetGovernors();
 			-- Disable Settler builds
 			pPlayerUnits:SetBuildDisabled(GameInfo.Units["UNIT_SETTLER"].Index, true);
-			if Game.GetCurrentGameTurn() == GameConfiguration.GetStartTurn() and pPlayerGovernors ~= nil then
+			if Game.GetCurrentGameTurn() == GameConfiguration.GetStartTurn() and pPlayerGovernors ~= nil and pPlayerGovernors:GetGovernorPoints() ~= 1 then
 				pPlayerGovernors:ChangeGovernorPoints(1)
 			end
 			if pPlayer:IsHuman() == false then

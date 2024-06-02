@@ -1,20 +1,20 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Mod id="b26ad71c-8fe8-4fa2-886b-ad6b7f605587" version="001">
+<Mod id="b26ad71c-8fe8-4fa2-886b-ad6b7f605587" version="201">
   <Properties>
     <Name>LOC_OCC_TITLE</Name>
     <Description>LOC_OCC_DESCRIPTION</Description>
 	<Created>1</Created>
-	<Version>2</Version>
+	<Version>201</Version>
     <Teaser>LOC_OCC_TEASER</Teaser>
-    <Authors>Dragon</Authors>
+    <Authors>Dragon, Calcifer</Authors>
 	<SpecialThanks>D. / Jack The Narrator, iElden</SpecialThanks>
     <CompatibleVersions>1.2,2.0</CompatibleVersions>
   </Properties>
   
 	<LocalizedText>
 		<Text id="LOC_OCC_TITLE">
-			<en_US>Three Cities Challenge BETA 004</en_US>
-			<fr_FR>Three Cities Challenge BETA 004</fr_FR>
+			<en_US>Three Cities Challenge BETA 2.0.1</en_US>
+			<fr_FR>Three Cities Challenge BETA 2.0.1</fr_FR>
 		</Text>
 		<Text id="LOC_OCC_TEASER">
 			<en_US>Play a fast Civilization experience with only Three cities</en_US>

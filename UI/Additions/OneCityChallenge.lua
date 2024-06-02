@@ -75,7 +75,10 @@ function OnPlayerTurnActivated()
 			end
 		end		
 	end
-	
+	if b_first_wave == false then
+		ContextPtr:SetHide(true);
+		return
+	end
 	local msg = "in "..tostring(remainingTurn).." "
 	if remainingTurn > 1 then
 		msg = msg.."Turns"
