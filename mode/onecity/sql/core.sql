@@ -118,8 +118,6 @@ UPDATE MajorStartingUnits
 SET Quantity = '3' 
 WHERE Unit = 'UNIT_SETTLER';
 
-INSERT INTO MajorStartingUnits (Era, Unit, NotStartTile, Quantity) VALUES ('ERA_ANCIENT', 'UNIT_BUILDER', 'True', '3');
-
 -----------------------------------------------
 -- Start with 3 Radius
 -----------------------------------------------
@@ -167,7 +165,7 @@ WHERE Name = 'TRADING_POST_GOLD_IN_OWN_CITY';
 -----------------------------------------------
 
 UPDATE GlobalParameters
-SET Value = '6' 
+SET Value = '4' 
 WHERE Name = 'CITY_AMENITIES_FOR_FREE';
 
 UPDATE GlobalParameters
@@ -381,9 +379,9 @@ VALUES  								('THE_MERCHANT_LEVEL_1',			'THE_MERCHANT_LEVEL_0'),
 
 INSERT INTO GovernorPromotionConditions	(GovernorPromotionType, 			HiddenWithoutPrereqs,	EarliestGameEra)
 VALUES  								('THE_MERCHANT_LEVEL_0',			0,						NULL),
-										('THE_MERCHANT_LEVEL_1',			1,						NULL),
-										('THE_MERCHANT_LEVEL_2',			1,						'ERA_MEDIEVAL'),
-										('THE_MERCHANT_LEVEL_3',			1,						'ERA_INDUSTRIAL');
+										('THE_MERCHANT_LEVEL_1',			0,						NULL),
+										('THE_MERCHANT_LEVEL_2',			0,						'ERA_MEDIEVAL'),
+										('THE_MERCHANT_LEVEL_3',			0,						'ERA_INDUSTRIAL');
 
 INSERT INTO GovernorPromotionModifiers (GovernorPromotionType, ModifierId) VALUES ('THE_MERCHANT_LEVEL_0', 'OCC_MOD_THE_MERCHANT_LEVEL_0');
 INSERT INTO GovernorPromotionModifiers (GovernorPromotionType, ModifierId) VALUES ('THE_MERCHANT_LEVEL_1', 'OCC_MOD_THE_MERCHANT_LEVEL_1A');
