@@ -32,7 +32,7 @@ function ScenarioCommand_BUILDWALL(eOwner : number, iUnitID : number)
 	if (pUnit == nil) then
 		return;
 	end
-	
+
 	local pPlot : object = Map.GetPlot(pUnit:GetX(), pUnit:GetY());
 	if (pPlot == nil) then
 		return;
@@ -45,9 +45,9 @@ function ScenarioCommand_BUILDWALL(eOwner : number, iUnitID : number)
 	ImprovementBuilder.SetImprovementType(pPlot, ms_WallImprov, eOwner);
 	pPlot:SetOwner(eOwner)
 	-- Give Territory
-	
+
 	for i=0,5,1 do --Look at each adjacent plot
-		
+
 		local adjacentPlot = Map.GetAdjacentPlot(pPlot:GetX(),pPlot:GetY(), i);
 
 		if (adjacentPlot ~= nil) and (not adjacentPlot:IsOwned()) then
@@ -67,7 +67,7 @@ function ScenarioCommand_BUILDWALL(eOwner : number, iUnitID : number)
 	-- Refresh or init Charges property
 	local iNumChargesUsed : number = GetObjectState(pUnit, g_PropertyKeys.Charges);
 	if (iNumChargesUsed == nil) then
-		iNumChargesUsed = 1;		
+		iNumChargesUsed = 1;
 	else
 		iNumChargesUsed = iNumChargesUsed + 1;
 	end
@@ -100,7 +100,7 @@ function ScenarioCommand_SETRALLY(eOwner : number, iUnitID : number)
 	if (pUnit == nil) then
 		return;
 	end
-	
+
 	local pPlot : object = Map.GetPlot(pUnit:GetX(), pUnit:GetY());
 	if (pPlot == nil) then
 		return;
@@ -117,20 +117,20 @@ function ScenarioCommand_SETRALLY(eOwner : number, iUnitID : number)
 			if (pPlot_Owner ~=nil ) then
 				if pPlot_Owner == eOwner then
 					if pPlot:GetImprovementType() == ms_RallyImprov then
-						ImprovementBuilder.SetImprovementType(pPlot, -1, NO_PLAYER); 
+						ImprovementBuilder.SetImprovementType(pPlot, -1, NO_PLAYER);
 						local message:string  = Locale.Lookup("OCC_SETRALLY_REMOVE_TEXT");
 						Game.AddWorldViewText(0, message, pPlot:GetX(), pPlot:GetY());
 					end
 				end
 			end
-		end	
+		end
 	end
 
 	-- Put Improvements
 	ImprovementBuilder.SetImprovementType(pPlot, ms_RallyImprov, eOwner);
 	pPlot:SetOwner(eOwner)
 	-- Give Territory
-	
+
 
 	--Flyover text
 	local message:string  = Locale.Lookup("OCC_SETRALLY_COMMAND_TEXT");
@@ -144,7 +144,7 @@ function ScenarioCommand_SETRALLY(eOwner : number, iUnitID : number)
 	-- Refresh or init Charges property
 	local iNumChargesUsed : number = GetObjectState(pUnit, g_PropertyKeys.Charges);
 	if (iNumChargesUsed == nil) then
-		iNumChargesUsed = 1;		
+		iNumChargesUsed = 1;
 	else
 		iNumChargesUsed = iNumChargesUsed + 1;
 	end

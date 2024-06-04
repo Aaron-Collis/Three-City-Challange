@@ -27,7 +27,7 @@ function GetUnitActionsTable(pUnit : object)
 	--	Test all custom commands in table defined in "OCC_UnitCommands" to add
 	--	to the selected unit's table.
 	for sCommandKey, pCommandTable in pairs(m_ScenarioUnitCommands) do
-		
+
 		--if UnitManager.CanStartCommand(pUnit, UnitCommandTypes.EXECUTE_SCRIPT) then
 			local bVisible : boolean = true;
 			if (pCommandTable.IsVisible ~= nil) then
@@ -41,7 +41,7 @@ function GetUnitActionsTable(pUnit : object)
 					if (pCommandTable.IsDisabled ~= nil) then
 						bIsDisabled = pCommandTable.IsDisabled(pUnit);
 					end
-			
+
 					local sToolTipString : string = pCommandTable.ToolTipString or "Undefined Unit Command";
 
 					local pCallback : ifunction = function()
@@ -81,10 +81,10 @@ function FilterUnitStatsFromUnitData(unitData : table, ignoreStatType : number)
 		if (iChargesProp ~= nil and iMaxChargesProp ~= nil) then
 			local iChargesLeft = iMaxChargesProp - iChargesProp;
 			table.insert(pBaseData, {
-				Value = iChargesLeft,	
-				Type = "SpreadCharges", 
-				Label = "LOC_SCENARIO_HUD_CHARGES",				
-				FontIcon ="[ICON_Charges_Large]",	
+				Value = iChargesLeft,
+				Type = "SpreadCharges",
+				Label = "LOC_SCENARIO_HUD_CHARGES",
+				FontIcon ="[ICON_Charges_Large]",
 				IconName ="ICON_STATS_SPREADCHARGES"
 			});
 		end

@@ -27,23 +27,23 @@ local GOLD_REWARD = 600;
 -- ===========================================================================
 
 
--- =========================================================================== 
+-- ===========================================================================
 --	NEW EVENTS
--- =========================================================================== 
+-- ===========================================================================
 
 function OnImprovementPillaged(iPlotIndex :number, eImprovement :number)
 	if(iPlotIndex == NO_PLOT) then
 		print("ERROR: no plot");
 		return;
 	end
-	
+
 	if(eImprovement == ms_WallImprov) then
 		local improvPlot :object = Map.GetPlotByIndex(iPlotIndex);
 		if(improvPlot == nil) then
 			print("ERROR: improvPlot missing");
-			return;	
+			return;
 		end
-		
+
 		if(improvPlot:GetImprovementOwner() ~= NO_PLAYER) then
 			local pOwner :object = Players[improvPlot:GetImprovementOwner()];
 			if(pOwner ~= nil) then
@@ -63,7 +63,7 @@ function OnImprovementPillaged(iPlotIndex :number, eImprovement :number)
 							end
 						end
 					end
-					ImprovementBuilder.SetImprovementType(improvPlot, -1, NO_PLAYER); 
+					ImprovementBuilder.SetImprovementType(improvPlot, -1, NO_PLAYER);
 				end
 			end
 		end
@@ -72,9 +72,9 @@ end
 
 function OnGameTurnStarted_OneCity(turn)
 	-- Cannot ever have more than one city
-	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();	
+	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();
 	for _,iPlayerID in ipairs(pAllPlayerIDs) do
-	
+
 		local pPlayer : object = Players[iPlayerID];
 		local pPlayerCities : object = pPlayer:GetCities();
 		for i, pCity in pPlayerCities:Members() do
@@ -85,7 +85,7 @@ function OnGameTurnStarted_OneCity(turn)
 			end
 		end
 	end
-	
+
 	-- Waves trigger
 	local b_wave = false
 	-- Speed = Hash / Max Turn
@@ -93,32 +93,32 @@ function OnGameTurnStarted_OneCity(turn)
 	-- Epic = 341116999 / 750
 	-- Standard = 327976177 / 500
 	-- Quick = -1424172973 / 330
-	-- Online = -1649545904 / 250 
-	
+	-- Online = -1649545904 / 250
+
 	if GameConfiguration.GetGameSpeedType() == -1649545904 then
 		if turn % ms_OnlineWaveInterval == 0 then
 			b_wave = true
 		end
 	end
-	
+
 	if GameConfiguration.GetGameSpeedType() == -1424172973 then
 		if turn % ms_QuickWaveInterval == 0 then
 			b_wave = true
 		end
 	end
-	
+
 	if GameConfiguration.GetGameSpeedType() == 327976177 then
 		if turn % ms_StandardWaveInterval == 0 then
 			b_wave = true
 		end
 	end
-	
+
 	if GameConfiguration.GetGameSpeedType() == 341116999 then
 		if turn % ms_EpicWaveInterval == 0 then
 			b_wave = true
 		end
 	end
-	
+
 	if GameConfiguration.GetGameSpeedType() == 137894519 then
 		if turn % ms_MarathonWaveInterval == 0 then
 			b_wave = true
@@ -132,9 +132,9 @@ end
 
 function OnGameTurnStarted_CheckBorder(turn)
 	-- Cannot ever have improvement or tile of a dead major player on the map
-	local pAllEverPlayerIDs : table = PlayerManager.GetWasEverAliveMajorIDs();	
+	local pAllEverPlayerIDs : table = PlayerManager.GetWasEverAliveMajorIDs();
 	for _,iPlayerID in ipairs(pAllEverPlayerIDs) do
-	
+
 		local pPlayer : object = Players[iPlayerID];
 
 		if pPlayer ~= nil then
@@ -142,12 +142,12 @@ function OnGameTurnStarted_CheckBorder(turn)
 				for iPlotIndex = 0, Map.GetPlotCount()-1, 1 do
 					local pPlot = Map.GetPlotByIndex(iPlotIndex)
 					if pPlot ~= nil then
-					
+
 						local pPlot_Owner = pPlot:GetOwner()
 						if (pPlot_Owner ~=nil ) then
 							if pPlot_Owner == iPlayerID then
 								pPlot:SetOwner(NO_PLAYER)
-								ImprovementBuilder.SetImprovementType(pPlot, -1, NO_PLAYER); 		
+								ImprovementBuilder.SetImprovementType(pPlot, -1, NO_PLAYER);
 							end
 						end
 					end
@@ -155,39 +155,39 @@ function OnGameTurnStarted_CheckBorder(turn)
 			end
 		end
 	end
-	
+
 	-- Cannot have ghost rally point
 
 	for iPlotIndex = 0, Map.GetPlotCount()-1, 1 do
 		local pPlot = Map.GetPlotByIndex(iPlotIndex)
-		if pPlot ~= nil then		
+		if pPlot ~= nil then
 			local pPlot_Owner = pPlot:GetOwner()
 			if (pPlot_Owner == NO_PLAYER ) and (pPlot:GetImprovementType() == ms_RallyImprov) then
-				ImprovementBuilder.SetImprovementType(pPlot, -1, NO_PLAYER); 		
+				ImprovementBuilder.SetImprovementType(pPlot, -1, NO_PLAYER);
 			end
 		end
-	end			
+	end
 
 
 end
 
--- DESTROY SPAWNED SETTLERS 
+-- DESTROY SPAWNED SETTLERS
 -- function OnPlayerTurnActivated_OneCity(playerID:number)
--- 	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();	
+-- 	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();
 -- 	for _,iPlayerID in ipairs(pAllPlayerIDs) do
-	
+
 -- 		local pPlayer : object = Players[iPlayerID];
 -- 		if pPlayer ~= nil then
 -- 		local pPlayerUnits : object = pPlayer:GetUnits();
 -- 		local pPlayerCities = pPlayer:GetCities();
-		
-		
+
+
 -- 		if pPlayerCities:GetCount() > 0 and pPlayer:IsMajor() then
 -- 			for k, pUnit in pPlayerUnits:Members() do
 -- 				if pUnit:GetName() == "LOC_UNIT_SETTLER_NAME" then
 -- 					print("One City Challenge: Destroy Setter",iPlayerID)
--- 					pPlayerUnits:Destroy(pUnit)	
--- 				end				
+-- 					pPlayerUnits:Destroy(pUnit)
+-- 				end
 -- 			end
 -- 		end
 -- 		end
@@ -217,30 +217,30 @@ function OnUnitInitialized(iPlayerID : number, iUnitID : number)
 end
 
 function OnCityConquered(capturerID,  ownerID, cityID , cityX, cityY)
-	
+
 	if capturerID == nil then
 		return
 	end
-	
+
 	local pPlayer = Players[capturerID]
-	
+
 	if pPlayer ~= nil then
 		local pGold:table = pPlayer:GetTreasury();
 		print("Award Gold to",capturerID)
 		pGold:ChangeGoldBalance(GOLD_REWARD);
 	end
-	
+
 end
 
--- =========================================================================== 
+-- ===========================================================================
 --	One City Challenge
--- =========================================================================== 
+-- ===========================================================================
 
 
 function OneCity_Init()
-	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();	
+	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();
 	for _,iPlayerID in ipairs(pAllPlayerIDs) do
-	
+
 		local pPlayer : object = Players[iPlayerID];
 		if pPlayer ~= nil then
 			local pPlayerUnits : object = pPlayer:GetUnits();
@@ -257,19 +257,19 @@ function OneCity_Init()
 			end
 		end
 	end
-	
+
 end
 
 function OnWaveTriggered(turn)
-		
-	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();	
+
+	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();
 	for _,iPlayerID in ipairs(pAllPlayerIDs) do
-	
+
 		local pPlayer : object = Players[iPlayerID];
 		local pPlayerCities : object = pPlayer:GetCities();
 		local playerUnits = pPlayer:GetUnits()
 		if pPlayer:IsMajor() == true and pPlayerCities ~= nil then
-		
+
 			local unitType = "UNIT_SCOUT"
 			local unitNumber = ms_WaveSize
 			if turn == ms_ScoutWaveTurn then
@@ -280,14 +280,14 @@ function OnWaveTriggered(turn)
 			end
 			print("OnWaveTriggered",iPlayerID,unitType,unitNumber)
 			local unitIndex = GameInfo.Units[unitType].Index
-	
+
 			if unitIndex == nil then
 				print("Invalid Unit",unitType)
 				return
 			end
-		
+
 			-- Has a rally point ?
-			local rally_plot = nil 
+			local rally_plot = nil
 			for iPlotIndex = 0, Map.GetPlotCount()-1, 1 do
 				local pPlot = Map.GetPlotByIndex(iPlotIndex)
 				if pPlot ~= nil then
@@ -297,20 +297,20 @@ function OnWaveTriggered(turn)
 							if pPlot:GetImprovementType() == ms_RallyImprov then
 								rally_plot = pPlot
 								for i = 1, unitNumber, 1 do
-									playerUnits:Create(unitIndex, rally_plot:GetX(), rally_plot:GetY())	
-								end	
+									playerUnits:Create(unitIndex, rally_plot:GetX(), rally_plot:GetY())
+								end
 								return
 							end
 						end
 					end
 				end
-			end			
-			-- No rally point so spawn in Capital City		
+			end
+			-- No rally point so spawn in Capital City
 			local capitalCity = pPlayerCities:GetCapitalCity();
 			if capitalCity ~= nil then
 				for i = 1, unitNumber, 1 do
-					playerUnits:Create(unitIndex, capitalCity:GetX(), capitalCity:GetY())	
-				end	
+					playerUnits:Create(unitIndex, capitalCity:GetX(), capitalCity:GetY())
+				end
 			end
 		end
 	end
@@ -319,29 +319,29 @@ end
 function GetWaveUnit(iPlayerID)
 	local unitType = "UNIT_SCOUT"
 	local unitNumber = ms_WaveSize
-	
+
 	local pPlayer : object = Players[iPlayerID];
-	
+
 	if pPlayer == nil then
 		print("GetWaveUnit",iPlayerID,"Invalid Player")
 		return unitType, unitNumber
 	end
-	
+
 	local era = pPlayer:GetEra()
 	local leader = PlayerConfigurations[iPlayerID]:GetLeaderTypeName()
-	
+
 
 -- 40 Aluminium
 -- 41 Coal
--- 42 Horse 
+-- 42 Horse
 -- 43 Iron if pPlayer:GetResources():HasResource(43) == true then
 -- 44 Niter
 -- 45 Oil
 -- 46 Uranium
 	local playerTechs	:table	= pPlayer:GetTechs();
-	
-	
-	
+
+
+
 	-- Information --
 
 		-- NORMAL --
@@ -381,7 +381,7 @@ function GetWaveUnit(iPlayerID)
 			return "UNIT_INFANTRY", unitNumber
 		end
 
-	
+
 	-- Industrial --
 
 		-- UU --
@@ -416,7 +416,7 @@ function GetWaveUnit(iPlayerID)
 			return "UNIT_FIELD_CANNON", unitNumber
 		end
 
-	
+
 	-- Renaissance --
 
 		-- UU --
@@ -443,8 +443,8 @@ function GetWaveUnit(iPlayerID)
 			return "UNIT_MUSKETMAN", unitNumber
 		end
 
-	
-	
+
+
 	-- Medieval --
 
 		-- UU --
@@ -559,7 +559,7 @@ function GetWaveUnit(iPlayerID)
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_THE_WHEEL"].Index) and leader == "LEADER_CLEOPATRA" then
 			unitNumber = unitNumber + 1
 			return "UNIT_EGYPTIAN_CHARIOT_ARCHER", unitNumber
-		end			
+		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_BRONZE_WORKING"].Index) and (leader == "LEADER_GORGO" or leader == "LEADER_PERICLES") then
 			unitNumber = unitNumber + 2
 			return "UNIT_HOPLITE", unitNumber
@@ -582,9 +582,9 @@ function GetWaveUnit(iPlayerID)
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_ARCHERY"].Index) then
 			return "UNIT_ARCHER", unitNumber
 		end
-		
+
 		print("No pre-exiting scenario",iPlayerID)
-		
+
 		return "UNIT_WARRIOR", unitNumber
 
 
@@ -595,7 +595,7 @@ end
 
 function Initialize()
 	print("-- OCC ON --");
-	
+
 	if GameConfiguration.GetValue("GAMEMODE_ONECITY") == true then
 		OneCity_Init()
 		b_onecity = true
@@ -605,7 +605,7 @@ function Initialize()
 		GameEvents.OnImprovementPillaged.Add(OnImprovementPillaged);
 		GameEvents.CityConquered.Add(OnCityConquered);
 		GameEvents.UnitInitialized.Add(OnUnitInitialized);
-		
+
 		-- Do NEW GAME INIT (if applicable)
 		local bInited : boolean = GetObjectState(Game, g_PropertyKeys.Initialized);
 		if (bInited == nil or bInited == false) then

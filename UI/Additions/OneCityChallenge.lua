@@ -56,7 +56,7 @@ function OnPlayerTurnActivated()
 				remainingTurn = ms_StandardWaveInterval - remainingTurn
 			end
 		end
-	
+
 		if GameConfiguration.GetGameSpeedType() == 341116999 then
 			if currentTurn < ms_EpicWaveInterval then
 				remainingTurn =  ms_EpicWaveInterval - currentTurn
@@ -65,7 +65,7 @@ function OnPlayerTurnActivated()
 				remainingTurn = ms_EpicWaveInterval - remainingTurn
 			end
 		end
-	
+
 		if GameConfiguration.GetGameSpeedType() == 137894519 then
 			if currentTurn < ms_MarathonWaveInterval then
 				remainingTurn =  ms_MarathonWaveInterval - currentTurn
@@ -73,7 +73,7 @@ function OnPlayerTurnActivated()
 				remainingTurn = currentTurn % ms_MarathonWaveInterval
 				remainingTurn = ms_MarathonWaveInterval - remainingTurn
 			end
-		end		
+		end
 	end
 	if b_first_wave == false then
 		ContextPtr:SetHide(true);
@@ -86,7 +86,7 @@ function OnPlayerTurnActivated()
 		msg = msg.."Turn"
 	end
 	Controls.Turn_Label:SetText(tostring(msg))
-	
+
 	if b_first_wave == true then
 		Controls.NextWave_Label:SetText(tostring("2x  "))
 		Controls.UnitIcon:SetIcon("ICON_UNIT_SCOUT_PORTRAIT")
@@ -99,7 +99,7 @@ function OnPlayerTurnActivated()
 		unit = unit.."_PORTRAIT"
 		Controls.UnitIcon:SetIcon(tostring(unit))
 	end
-	
+
 	if PlayerConfigurations[Game.GetLocalPlayer()]:GetLeaderTypeName() == "LEADER_SPECTATOR" then
 		Controls.NextWave_Label:SetText(tostring("-- "))
 		Controls.UnitIcon:SetIcon("ICON_UNIT_SETTLER_PORTRAIT")
@@ -112,15 +112,15 @@ end
 -- ===========================================================================
 
 function OnWaveTriggered(turn)
-		
-	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();	
+
+	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();
 	for _,iPlayerID in ipairs(pAllPlayerIDs) do
-	
+
 		local pPlayer : object = Players[iPlayerID];
 		local pPlayerCities : object = pPlayer:GetCities();
 		local playerUnits = pPlayer:GetUnits()
 		if pPlayer:IsMajor() == true and pPlayerCities ~= nil then
-		
+
 			local unitType = "UNIT_SCOUT"
 			local unitNumber = ms_WaveSize
 			if turn == ms_ScoutWaveTurn then
@@ -131,18 +131,18 @@ function OnWaveTriggered(turn)
 			end
 			print("OnWaveTriggered",iPlayerID,unitType,unitNumber)
 			local unitIndex = GameInfo.Units[unitType].Index
-	
+
 			if unitIndex == nil then
 				print("Invalid Unit",unitType)
 				return
 			end
-		
-				
+
+
 			local capitalCity = pPlayerCities:GetCapitalCity();
 			if capitalCity ~= nil then
 				for i = 1, unitNumber, 1 do
-					playerUnits:Create(unitIndex, capitalCity:GetX(), capitalCity:GetY())	
-				end	
+					playerUnits:Create(unitIndex, capitalCity:GetX(), capitalCity:GetY())
+				end
 			end
 		end
 	end
@@ -151,29 +151,29 @@ end
 function GetWaveUnit(iPlayerID)
 	local unitType = "UNIT_SCOUT"
 	local unitNumber = ms_WaveSize
-	
+
 	local pPlayer : object = Players[iPlayerID];
-	
+
 	if pPlayer == nil then
 		print("GetWaveUnit",iPlayerID,"Invalid Player")
 		return unitType, unitNumber
 	end
-	
+
 	local era = pPlayer:GetEra()
 	local leader = PlayerConfigurations[iPlayerID]:GetLeaderTypeName()
-	
+
 
 -- 40 Aluminium
 -- 41 Coal
--- 42 Horse 
+-- 42 Horse
 -- 43 Iron if pPlayer:GetResources():HasResource(43) == true then
 -- 44 Niter
 -- 45 Oil
 -- 46 Uranium
 	local playerTechs	:table	= pPlayer:GetTechs();
-	
-	
-	
+
+
+
 	-- Information --
 
 		-- NORMAL --
@@ -213,7 +213,7 @@ function GetWaveUnit(iPlayerID)
 			return "UNIT_INFANTRY", unitNumber
 		end
 
-	
+
 	-- Industrial --
 
 		-- UU --
@@ -248,7 +248,7 @@ function GetWaveUnit(iPlayerID)
 			return "UNIT_FIELD_CANNON", unitNumber
 		end
 
-	
+
 	-- Renaissance --
 
 		-- UU --
@@ -275,8 +275,8 @@ function GetWaveUnit(iPlayerID)
 			return "UNIT_MUSKETMAN", unitNumber
 		end
 
-	
-	
+
+
 	-- Medieval --
 
 		-- UU --
@@ -391,7 +391,7 @@ function GetWaveUnit(iPlayerID)
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_THE_WHEEL"].Index) and leader == "LEADER_CLEOPATRA" then
 			unitNumber = unitNumber + 1
 			return "UNIT_EGYPTIAN_CHARIOT_ARCHER", unitNumber
-		end			
+		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_BRONZE_WORKING"].Index) and (leader == "LEADER_GORGO" or leader == "LEADER_PERICLES") then
 			unitNumber = unitNumber + 2
 			return "UNIT_HOPLITE", unitNumber
@@ -414,9 +414,9 @@ function GetWaveUnit(iPlayerID)
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_ARCHERY"].Index) then
 			return "UNIT_ARCHER", unitNumber
 		end
-		
+
 		print("No pre-exiting scenario",iPlayerID)
-		
+
 		return "UNIT_WARRIOR", unitNumber
 
 

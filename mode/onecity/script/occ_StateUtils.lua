@@ -1,12 +1,12 @@
 -- ===========================================================================
 -- STATE / CACHE
--- 
+--
 --	State for the overall mod is kept as a property on the Game object.
 --  From Black Death Scenario
 -- ===========================================================================
 
 g_PropertyKeys = {
-	Initialized	= "Init",	
+	Initialized	= "Init",
 	Charges			= "Charges",
 	MaxCharges		= "MaxCharges",
 };
@@ -63,7 +63,7 @@ function OnPlayerCommandSetObjectStateHandler(ePlayer : number, params : table)
 	if pObject ~= nil then
 		SetObjectState(pObject, params.propertyName, params.value);
 	end
-		
+
 end
 
 -- This file gets includes on both the UI and GameCore side, we only want to handle the event on the Game Core side.
@@ -112,7 +112,7 @@ function RefreshObjectState(pObject : object, sPropertyName : string)
 
 	if (pObject.GetProperty == nil) then
 		return nil;
-	end	
+	end
 
 	local propResult = pObject:GetProperty(sPropertyName);
 

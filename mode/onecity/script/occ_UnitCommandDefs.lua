@@ -4,9 +4,9 @@ include "occ_StateUtils"
 
 	OCC Custom Unit Commands - Definitions
 
-		Data and callbacks for enabling custom unit commands to appear and 
-		work in the Unit Panel UI. These definitions mimic what appears in 
-		data for common unit commands, and are used in the replacement 
+		Data and callbacks for enabling custom unit commands to appear and
+		work in the Unit Panel UI. These definitions mimic what appears in
+		data for common unit commands, and are used in the replacement
 		UnitPanel script.
 
 -- =========================================================================]]
@@ -17,7 +17,7 @@ local ms_RallyImprov :number		= GameInfo.Improvements["IMPROVEMENT_RALLY_POINT"]
 --[[ =======================================================================
 	BUILDWALL
 
-	Create the Wall 
+	Create the Wall
 -- =========================================================================]]
 m_ScenarioUnitCommands.BUILDWALL = {};
 
@@ -28,7 +28,7 @@ m_ScenarioUnitCommands.BUILDWALL.Properties = {};
 m_ScenarioUnitCommands.BUILDWALL.EventName		= "ScenarioCommand_BUILDWALL";
 m_ScenarioUnitCommands.BUILDWALL.CategoryInUI	= "SPECIFIC";
 m_ScenarioUnitCommands.BUILDWALL.Icon			= "ICON_UNITOPERATION_BUILD_IMPROVEMENT";
-m_ScenarioUnitCommands.BUILDWALL.ToolTipString	= Locale.Lookup("LOC_UNITCOMMAND_BUILDWALL_NAME") .. "[NEWLINE][NEWLINE]" .. 
+m_ScenarioUnitCommands.BUILDWALL.ToolTipString	= Locale.Lookup("LOC_UNITCOMMAND_BUILDWALL_NAME") .. "[NEWLINE][NEWLINE]" ..
 												Locale.Lookup("LOC_UNITCOMMAND_BUILDWALL_DESCRIPTION");
 m_ScenarioUnitCommands.BUILDWALL.DisabledToolTipString = Locale.Lookup("LOC_UNITCOMMAND_BUILDWALL_DISABLED_TT");
 m_ScenarioUnitCommands.BUILDWALL.VisibleInUI	= true;
@@ -61,18 +61,18 @@ function m_ScenarioUnitCommands.BUILDWALL.IsDisabled(pUnit : object)
 		return true;
 	end
 	local ePlotOwner = pPlot:GetOwner()
-	
+
 	-- Not in a city
 	local pCity : object = CityManager.GetCityAt(pPlot:GetX(), pPlot:GetY());
 	if (pCity ~= nil) then
 		return true;
 	end
-	
+
 	-- Not Already a Wall
 	if pPlot:GetImprovementType() == ms_WallImprov then
 		return true;
 	end
-	
+
 	-- Not on a district
 	if (pPlot:GetDistrictType() > -1) then
 		return true;
@@ -82,7 +82,7 @@ function m_ScenarioUnitCommands.BUILDWALL.IsDisabled(pUnit : object)
 	if (pPlot:IsWater() == true) then
 		return true;
 	end
-	
+
 	-- Not in foreign territory
 	if (ePlotOwner ~= eUnitOwner) and (ePlotOwner ~= -1) then
 		return true;
@@ -94,7 +94,7 @@ end
 --[[ =======================================================================
 	SETRALLY
 
-	Create the Wall 
+	Create the Wall
 -- =========================================================================]]
 m_ScenarioUnitCommands.SETRALLY = {};
 
@@ -105,7 +105,7 @@ m_ScenarioUnitCommands.SETRALLY.Properties = {};
 m_ScenarioUnitCommands.SETRALLY.EventName		= "ScenarioCommand_SETRALLY";
 m_ScenarioUnitCommands.SETRALLY.CategoryInUI	= "SPECIFIC";
 m_ScenarioUnitCommands.SETRALLY.Icon			= "ICON_UNITOPERATION_DEPLOY";
-m_ScenarioUnitCommands.SETRALLY.ToolTipString	= Locale.Lookup("LOC_UNITCOMMAND_SETRALLY_NAME") .. "[NEWLINE][NEWLINE]" .. 
+m_ScenarioUnitCommands.SETRALLY.ToolTipString	= Locale.Lookup("LOC_UNITCOMMAND_SETRALLY_NAME") .. "[NEWLINE][NEWLINE]" ..
 												Locale.Lookup("LOC_UNITCOMMAND_SETRALLY_DESCRIPTION");
 m_ScenarioUnitCommands.SETRALLY.DisabledToolTipString = Locale.Lookup("LOC_UNITCOMMAND_SETRALLY_DISABLED_TT");
 m_ScenarioUnitCommands.SETRALLY.VisibleInUI	= true;
@@ -138,18 +138,18 @@ function m_ScenarioUnitCommands.SETRALLY.IsDisabled(pUnit : object)
 		return true;
 	end
 	local ePlotOwner = pPlot:GetOwner()
-	
+
 	-- Not in a city
 	local pCity : object = CityManager.GetCityAt(pPlot:GetX(), pPlot:GetY());
 	if (pCity ~= nil) then
 		return true;
 	end
-	
+
 	-- Not an improvement
 	if pPlot:GetImprovementType() > -1 then
 		return true;
 	end
-	
+
 	-- Not on a district
 	if (pPlot:GetDistrictType() > -1) then
 		return true;
@@ -159,7 +159,7 @@ function m_ScenarioUnitCommands.SETRALLY.IsDisabled(pUnit : object)
 	if (pPlot:IsWater() == true) then
 		return true;
 	end
-	
+
 	-- Not in foreign or neutral territory
 	if (ePlotOwner ~= eUnitOwner) then
 		return true;
