@@ -75,10 +75,6 @@ function OnPlayerTurnActivated()
 			end
 		end
 	end
-	if b_first_wave == false then
-		ContextPtr:SetHide(true);
-		return
-	end
 	local msg = "in "..tostring(remainingTurn).." "
 	if remainingTurn > 1 then
 		msg = msg.."Turns"
@@ -171,81 +167,97 @@ function GetWaveUnit(iPlayerID)
 -- 45 Oil
 -- 46 Uranium
 	local playerTechs	:table	= pPlayer:GetTechs();
+	local playerCulture	= pPlayer:GetCulture();
 
 
 
 	-- Information --
 
 		-- NORMAL --
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_ROBOTICS"].Index) and pPlayer:GetResources():HasResource(46)  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_ROBOTICS"].Index) then
 			unitNumber = 1
 			return "UNIT_GIANT_DEATH_ROBOT", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_COMPOSITES"].Index) and pPlayer:GetResources():HasResource(45)  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_COMPOSITES"].Index) then
 			return "UNIT_MODERN_ARMOR", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_SATELLITES"].Index) then
+			return "UNIT_MECHANIZED_INFANTRY", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_GUIDANCE_SYSTEMS"].Index) then
+			return "UNIT_ROCKET_ARTILLERY", unitNumber
 		end
 
 	-- Atomic --
 
 		-- NORMAL --
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_SYNTHETIC_MATERIALS"].Index) and pPlayer:GetResources():HasResource(40)  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_SYNTHETIC_MATERIALS"].Index) then
 			return "UNIT_HELICOPTER", unitNumber
-		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_PLASTICS"].Index) then
-			return "UNIT_SPEC_OPS", unitNumber
 		end
 
 	-- Modern --
 
 		-- UU --
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_REPLACEABLE_PARTS"].Index) and leader == "LEADER_JOHN_CURTIN" then
-			unitNumber = unitNumber + 1
+			unitNumber = unitNumber + 2
 			return "UNIT_DIGGER", unitNumber
 		end
 		-- NORMAL --
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_COMBUSTION"].Index) and pPlayer:GetResources():HasResource(45)  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_COMBUSTION"].Index) then
 			return "UNIT_TANK", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_STEEL"].Index) and pPlayer:GetResources():HasResource(45)  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_STEEL"].Index) then
 			return "UNIT_ARTILLERY", unitNumber
 		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_REPLACEABLE_PARTS"].Index) then
 			return "UNIT_INFANTRY", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_CHEMISTRY"].Index) then
+			return "UNIT_AT_CREW", unitNumber
 		end
 
 
 	-- Industrial --
 
 		-- UU --
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_BALLISTICS"].Index) and pPlayer:GetResources():HasResource(43) and (leader == "LEADER_T_ROOSEVELT" or leader == "LEADER_T_ROOSEVELT_ROUGHRIDER") then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_BALLISTICS"].Index) and (leader == "LEADER_T_ROOSEVELT_ROUGHRIDER") then
 			unitNumber = unitNumber + 1
 			return "UNIT_AMERICAN_ROUGH_RIDER", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_BALLISTICS"].Index) and pPlayer:GetResources():HasResource(43) and (leader == "LEADER_JADWIGA") then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_RIFLING"].Index) and (leader == "LEADER_ROBERT_THE_BRUCE") then
+			unitNumber = unitNumber + 2
+			return "UNIT_SCOTTISH_HIGHLANDER", unitNumber
+		end
+		if playerCulture:HasCivic(GameInfo.Civics["CIVIC_REFORMED_CHURCH"].Index) and (leader == "LEADER_JADWIGA") then
 			unitNumber = unitNumber + 1
 			return "UNIT_POLISH_HUSSAR", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_SCIENCE"].Index) and pPlayer:GetResources():HasResource(44) and (leader == "LEADER_VICTORIA" or leader == "LEADER_ELEANOR_ENGLAND") then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_SCIENCE"].Index) and (leader == "LEADER_VICTORIA") then
 			unitNumber = unitNumber + 2
 			return "UNIT_ENGLISH_REDCOAT", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_SCIENCE"].Index) and pPlayer:GetResources():HasResource(44) and (leader == "LEADER_CATHERINE_DE_MEDICI" or leader == "LEADER_CATHERINE_DE_MEDICI_ALT" or leader == "LEADER_ELEANOR_FRANCE") then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_SCIENCE"].Index) and (leader == "LEADER_PETER_GREAT") then
+			unitNumber = unitNumber + 1
+			return "UNIT_RUSSIAN_COSSACK", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_SCIENCE"].Index) and (leader == "LEADER_CATHERINE_DE_MEDICI" or leader == "LEADER_CATHERINE_DE_MEDICI_ALT" or leader == "LEADER_ELEANOR_FRANCE") then
 			unitNumber = unitNumber + 2
 			return "UNIT_FRENCH_GARDE_IMPERIALE", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_BALLISTICS"].Index) and leader == "LEADER_SEONDEOK" then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_SCIENCE"].Index) and (leader == "LEADER_SIMON_BOLIVAR") then
 			unitNumber = unitNumber + 1
-			return "UNIT_KOREAN_HWACHA", unitNumber
+			return "UNIT_COLOMBIAN_LLANERO", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_SCIENCE"].Index) and (leader == "LEADER_MATTHIAS_CORVINUS") then
+			unitNumber = unitNumber + 1
+			return "UNIT_HUNGARY_HUSZAR", unitNumber
 		end
 		-- NORMAL --
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_BALLISTICS"].Index) and pPlayer:GetResources():HasResource(43)  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_BALLISTICS"].Index) then
 			return "UNIT_CUIRASSIER", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_SCIENCE"].Index) and pPlayer:GetResources():HasResource(44)  then
-			return "UNIT_LINE_INFANTRY", unitNumber
-		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_BALLISTICS"].Index) then
-			return "UNIT_FIELD_CANNON", unitNumber
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_SCIENCE"].Index) then
+			return "UNIT_CAVALRY", unitNumber
 		end
 
 
@@ -256,22 +268,23 @@ function GetWaveUnit(iPlayerID)
 			unitNumber = unitNumber + 1
 			return "UNIT_SWEDEN_CAROLEAN", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_GUNPOWDER"].Index) and pPlayer:GetResources():HasResource(44) and leader == "LEADER_PHILIP_II"  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_GUNPOWDER"].Index) and (leader == "LEADER_SEONDEOK" or leader == "LEADER_SEJONG") then
+			unitNumber = unitNumber + 1
+			return "UNIT_KOREAN_HWACHA", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_GUNPOWDER"].Index) and leader == "LEADER_PHILIP_II"  then
 			unitNumber = unitNumber + 2
 			return "UNIT_SPANISH_CONQUISTADOR", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_GUNPOWDER"].Index) and pPlayer:GetResources():HasResource(44) and leader == "LEADER_SULEIMAN"  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_GUNPOWDER"].Index) and leader == "LEADER_SULEIMAN"  then
 			unitNumber = unitNumber + 2
 			return "UNIT_SULEIMAN_JANISSARY", unitNumber
 		end
 		-- NORMAL --
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_METAL_CASTING"].Index) and pPlayer:GetResources():HasResource(44)  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_METAL_CASTING"].Index) then
 			return "UNIT_BOMBARD", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_METAL_CASTING"].Index) then
-			return "UNIT_PIKE_AND_SHOT", unitNumber
-		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_GUNPOWDER"].Index) and pPlayer:GetResources():HasResource(44)  then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_GUNPOWDER"].Index) then
 			return "UNIT_MUSKETMAN", unitNumber
 		end
 
@@ -281,87 +294,116 @@ function GetWaveUnit(iPlayerID)
 
 		-- UU --
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_MACHINERY"].Index) and leader == "LEADER_PACHACUTI" then
-			unitNumber = unitNumber + 3
+			unitNumber = unitNumber + 2
 			return "UNIT_INCA_WARAKAQ", unitNumber
 		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_MACHINERY"].Index) and leader == "LEADER_LADY_TRIEU" then
-			unitNumber = unitNumber
+			unitNumber = unitNumber + 1
 			return "UNIT_VIETNAMESE_VOI_CHIEN", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_STIRRUPS"].Index) and leader == "LEADER_SALADIN" and pPlayer:GetResources():HasResource(43) then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_MACHINERY"].Index) and (leader == "LEADER_KUBLAI_KHAN_CHINA" or leader == "LEADER_QIN" or leader == "LEADER_QIN_ALT" or leader == "LEADER_WU_ZETIAN" or leader == "LEADER_YONGLE") then
+			unitNumber = unitNumber + 1
+			return "UNIT_CHINESE_CROUCHING_TIGER", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_ENGINEERING"].Index) and leader == "LEADER_JAYAVARMAN" then
+			unitNumber = unitNumber + 1
+			return "UNIT_KHMER_DOMREY", unitNumber
+		end
+		if playerCulture:HasCivic(GameInfo.Civics["CIVIC_DIVINE_RIGHT"].Index) and leader == "LEADER_BASIL" then
+			unitNumber = unitNumber + 1
+			return "UNIT_BYZANTINE_TAGMA", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_STIRRUPS"].Index) and (leader == "LEADER_GENGHIS_KHAN" or leader == "LEADER_KUBLAI_KHAN_MONGOLIA") then
+			unitNumber = unitNumber + 1
+			return "UNIT_MONGOLIAN_KESHIG", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_STIRRUPS"].Index) and (leader == "LEADER_SALADIN" or leader == "LEADER_SALADIN_ALT") then
 			unitNumber = unitNumber + 1
 			return "UNIT_ARABIAN_MAMLUK", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_STIRRUPS"].Index) and leader == "LEADER_MANSA_MUSA" and pPlayer:GetResources():HasResource(43) then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_STIRRUPS"].Index) and (leader == "LEADER_MANSA_MUSA" or leader == "LEADER_SUNDIATA_KEITA") then
 			unitNumber = unitNumber + 1
 			return "UNIT_MALI_MANDEKALU_CAVALRY", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_APPRENTICESHIP"].Index) and pPlayer:GetResources():HasResource(43) and leader == "LEADER_HOJO" then
+		if playerCulture:HasCivic(GameInfo.Civics["CIVIC_FEUDALISM"].Index) and (leader == "LEADER_HOJO" or leader == "LEADER_TOKUGAWA") then
 			unitNumber = unitNumber + 2
 			return "UNIT_JAPANESE_SAMURAI", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_APPRENTICESHIP"].Index) and pPlayer:GetResources():HasResource(43) and leader == "LEADER_HARDRADA" then
+		if playerCulture:HasCivic(GameInfo.Civics["CIVIC_FEUDALISM"].Index) and (leader == "LEADER_HARDRADA" or leader == "LEADER_HARALD_ALT") then
 			unitNumber = unitNumber + 2
 			return "UNIT_NORWEGIAN_BERSERKER", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_CASTLES"].Index) and pPlayer:GetResources():HasResource(42) and leader == "LEADER_MATTHIAS_CORVINUS" then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_CASTLES"].Index) and leader == "LEADER_MATTHIAS_CORVINUS" then
 			unitNumber = unitNumber + 1
 			return "UNIT_HUNGARY_BLACK_ARMY", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_CASTLES"].Index) and pPlayer:GetResources():HasResource(42) and leader == "LEADER_MENELIK" then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_CASTLES"].Index) and leader == "LEADER_MENELIK" then
 			unitNumber = unitNumber + 1
 			return "UNIT_ETHIOPIAN_OROMO_CAVALRY", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_CASTLES"].Index) and leader == "LEADER_LAUTARO" then
+			unitNumber = unitNumber + 1
+			return "UNIT_MAPUCHE_MALON_RAIDER", unitNumber
 		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_TACTICS"].Index) and leader == "LEADER_SHAKA" then
 			unitNumber = unitNumber + 2
 			return "UNIT_ZULU_IMPI", unitNumber
 		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_TACTICS"].Index) and leader == "LEADER_TAMAR" then
+			unitNumber = unitNumber + 2
+			return "UNIT_GEORGIAN_KHEVSURETI", unitNumber
+		end
 		-- NORMAL --
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_STIRRUPS"].Index) and pPlayer:GetResources():HasResource(42) and pPlayer:GetResources():HasResource(43) then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_STIRRUPS"].Index) then
 			return "UNIT_KNIGHT", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_APPRENTICESHIP"].Index) and pPlayer:GetResources():HasResource(43) then
-			return "UNIT_MAN_AT_ARMS", unitNumber
-		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_CASTLES"].Index) and pPlayer:GetResources():HasResource(42)then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_CASTLES"].Index) then
 			return "UNIT_COURSER", unitNumber
 		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_MILITARY_TACTICS"].Index) then
-			return "UNIT_PIKEMAN", unitNumber
+			return "UNIT_MAN_AT_ARMS", unitNumber
 		end
 
 	-- Classical --
 
 		-- UU --
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and pPlayer:GetResources():HasResource(43) and leader == "LEADER_TRAJAN" then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and (leader == "LEADER_TRAJAN" or leader == "LEADER_JULIUS_CAESAR") then
 			unitNumber = unitNumber + 2
 			return "UNIT_ROMAN_LEGION", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and pPlayer:GetResources():HasResource(43) and leader == "LEADER_MVEMBA" then
-			unitNumber = unitNumber + 1
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and (leader == "LEADER_MVEMBA" or leader == "LEADER_NZINGA_MBANDE") then
+			unitNumber = unitNumber + 2
 			return "UNIT_KONGO_SHIELD_BEARER", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_HORSEBACK_RIDING"].Index) and pPlayer:GetResources():HasResource(42) and leader == "LEADER_ALEXANDER" then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_HORSEBACK_RIDING"].Index) and leader == "LEADER_ALEXANDER" then
 			unitNumber = unitNumber + 1
 			return "UNIT_MACEDONIAN_HETAIROI", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and pPlayer:GetResources():HasResource(43) and leader == "LEADER_ALEXANDER" then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_HORSEBACK_RIDING"].Index) and leader == "LEADER_TOMYRIS" then
 			unitNumber = unitNumber + 1
+			return "UNIT_SCYTHIAN_HORSE_ARCHER", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_HORSEBACK_RIDING"].Index) and (leader == "LEADER_GANDHI" or leader == "LEADER_CHANDRAGUPTA") then
+			unitNumber = unitNumber + 1
+			return "UNIT_INDIAN_VARU", unitNumber
+		end
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and leader == "LEADER_ALEXANDER" then
+			unitNumber = unitNumber + 2
 			return "UNIT_MACEDONIAN_HYPASPIST", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and pPlayer:GetResources():HasResource(43) and leader == "LEADER_CYRUS" then
-			unitNumber = unitNumber + 1
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and (leader == "LEADER_CYRUS" or leader == "LEADER_NADER_SHAH") then
+			unitNumber = unitNumber + 2
 			return "UNIT_PERSIAN_IMMORTAL", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and pPlayer:GetResources():HasResource(43) and leader == "LEADER_KUPE" then
-			unitNumber = unitNumber + 1
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_CONSTRUCTION"].Index) and leader == "LEADER_KUPE" then
+			unitNumber = unitNumber + 2
 			return "UNIT_MAORI_TOA", unitNumber
 		end
 		-- NORMAL --
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_HORSEBACK_RIDING"].Index) and pPlayer:GetResources():HasResource(42) then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_HORSEBACK_RIDING"].Index) then
 			return "UNIT_HORSEMAN", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) and pPlayer:GetResources():HasResource(43) then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) then
 			return "UNIT_SWORDMAN", unitNumber
 		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_ENGINEERING"].Index) then
@@ -380,6 +422,10 @@ function GetWaveUnit(iPlayerID)
 			unitNumber = unitNumber + 1
 			return "UNIT_SUMERIAN_WAR_CART", unitNumber
 		end
+		if leader == "LEADER_HAMMURABI" then
+			unitNumber = unitNumber + 1
+			return "UNIT_BABYLONIAN_SABUM_KIBITTUM", unitNumber
+		end
 		if leader == "LEADER_MONTEZUMA" then
 			unitNumber = unitNumber + 2
 			return "UNIT_AZTEC_EAGLE_WARRIOR", unitNumber
@@ -388,13 +434,13 @@ function GetWaveUnit(iPlayerID)
 			unitNumber = unitNumber + 2
 			return "UNIT_GAUL_GAESATAE", unitNumber
 		end
-		if playerTechs:HasTech(GameInfo.Technologies["TECH_THE_WHEEL"].Index) and leader == "LEADER_CLEOPATRA" then
+		if playerTechs:HasTech(GameInfo.Technologies["TECH_THE_WHEEL"].Index) and (leader == "LEADER_CLEOPATRA" or leader == "LEADER_CLEOPATRA_ALT" or leader == "LEADER_RAMSES") then
 			unitNumber = unitNumber + 1
 			return "UNIT_EGYPTIAN_CHARIOT_ARCHER", unitNumber
 		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_BRONZE_WORKING"].Index) and (leader == "LEADER_GORGO" or leader == "LEADER_PERICLES") then
 			unitNumber = unitNumber + 2
-			return "UNIT_HOPLITE", unitNumber
+			return "UNIT_GREEK_HOPLITE", unitNumber
 		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_ARCHERY"].Index) and leader == "LEADER_LADY_SIX_SKY" then
 			unitNumber = unitNumber + 1
@@ -417,7 +463,7 @@ function GetWaveUnit(iPlayerID)
 
 		print("No pre-exiting scenario",iPlayerID)
 
-		return "UNIT_WARRIOR", unitNumber
+		return "UNIT_SCOUT", unitNumber
 
 
 end

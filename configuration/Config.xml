@@ -15,7 +15,6 @@
 
 	<ConfigurationUpdates>
 		<!-- OCC -->
-		<Row SourceGroup="Game" SourceId="GAMEMODE_ONECITY" SourceValue="1" TargetGroup="Game" TargetId="GAME_START_ERA" TargetValue="ERA_ANCIENT"  Static="1"/>
 		<Row SourceGroup="Game" SourceId="GAMEMODE_ONECITY" SourceValue="1" TargetGroup="Game" TargetId="GAME_NO_BARBARIANS" TargetValue="1" Static="1"/>
 	</ConfigurationUpdates>
 
