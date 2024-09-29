@@ -114,9 +114,10 @@ WHERE ModifierId='COMMEMORATION_INFRASTRUCTURE_SETTLER_DISCOUNT_MODIFIER' AND Na
 -----------------------------------------------
 -- MajorStartingUnits
 -----------------------------------------------
-UPDATE MajorStartingUnits
-SET Quantity = '3'
-WHERE Unit = 'UNIT_SETTLER';
+-- TCC 2.2.1: This is getting handled in lua.
+-- UPDATE MajorStartingUnits
+-- SET Quantity = '3'
+-- WHERE Unit = 'UNIT_SETTLER';
 
 -----------------------------------------------
 -- Start with 3 Radius

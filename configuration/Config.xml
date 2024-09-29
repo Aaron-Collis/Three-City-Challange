@@ -1,6 +1,7 @@
 <GameInfo>
 	<Parameters>
 		<Row ParameterId="GameMode_OneCity" Name="LOC_GAMEMODE_ONECITY_NAME" Description="LOC_GAMEMODE_ONECITY_DESCRIPTION" Domain="bool" DefaultValue="0" ConfigurationGroup="Game" ConfigurationId="GAMEMODE_ONECITY" NameArrayConfigurationId="GAMEMODES_ENABLED_NAMES" GroupId="GameModes" SortIndex="130"  SupportsSinglePlayer="1" Visible="1" />
+		<Row ParameterId="TCC_SettlerCount" Name="TCC Settler Count" Description="Description" Domain="TCCSettlerCountOptions" DefaultValue="3" ConfigurationGroup="Game" ConfigurationId="TCC_SettlerCount" GroupId="GameModes" SortIndex="131"/>
 	</Parameters>
 
 	<GameModeItems>
@@ -17,5 +18,11 @@
 		<!-- OCC -->
 		<Row SourceGroup="Game" SourceId="GAMEMODE_ONECITY" SourceValue="1" TargetGroup="Game" TargetId="GAME_NO_BARBARIANS" TargetValue="1" Static="1"/>
 	</ConfigurationUpdates>
+
+	<DomainValues>
+		<Row Domain="TCCSettlerCountOptions" Value="1" Name="1" Description="One City Challenge" SortIndex="10"/>
+		<Row Domain="TCCSettlerCountOptions" Value="3" Name="3" Description="Three City Challenge" SortIndex="20"/>
+		<Row Domain="TCCSettlerCountOptions" Value="5" Name="5" Description="Five City Challenge" SortIndex="30"/>
+	</DomainValues>
 
 </GameInfo>

@@ -245,6 +245,37 @@ end
 --	One City Challenge
 -- ===========================================================================
 
+function AddSettlers(plot, playerUnits)
+	local lastPlot = plot;
+	local startPlot = plot;
+	local numberOf = 0;
+	local iSettler = GameInfo.Units["UNIT_SETTLER"].Index
+		
+	if GameConfiguration.GetValue("TCC_SettlerCount") and GameConfiguration.GetValue("TCC_SettlerCount") >= 0 then 
+		numberOf = GameConfiguration.GetValue("TCC_SettlerCount")
+	end
+	
+	if numberOf > 0 then
+		local direction = 0
+		for i = 2, numberOf do	
+			for j = 1, 6 do
+			-- for direction = lastDirection, DirectionTypes.NUM_DIRECTION_TYPES - 1, 1 do
+			-- adjacentPlot = lastPlot;
+				direction = direction + 1
+				if direction == DirectionTypes.NUM_DIRECTION_TYPES then
+					direction = 0
+				end
+				adjacentPlot = Map.GetAdjacentPlot(lastPlot:GetX(), lastPlot:GetY(), direction);
+				if (adjacentPlot ~= nil) and not (adjacentPlot:IsWater() or adjacentPlot:IsImpassable()) then
+					break
+				end
+			end
+			pUnit = playerUnits:Create(iSettler, adjacentPlot:GetX(), adjacentPlot:GetY())	
+			lastPlot = startPlot
+		end	
+	end
+	return lastPlot;
+end
 
 function OneCity_Init()
 	local pAllPlayerIDs : table = PlayerManager.GetAliveIDs();
@@ -253,6 +284,26 @@ function OneCity_Init()
 		local pPlayer : object = Players[iPlayerID];
 		if pPlayer ~= nil then
 			local pPlayerUnits : object = pPlayer:GetUnits();
+			if pPlayer:IsMajor() or pPlayer:IsHuman() then
+				local settlerCount = 0;
+				local targetSettlerCount = 1;
+				if GameConfiguration.GetValue("TCC_SettlerCount") and GameConfiguration.GetValue("TCC_SettlerCount") >= 0 then 
+					targetSettlerCount = GameConfiguration.GetValue("TCC_SettlerCount");
+				end
+				for i, unit in pPlayerUnits:Members() do
+					local unitTypeName = UnitManager.GetTypeName(unit);
+					if "LOC_UNIT_SETTLER_NAME" == unitTypeName then
+						settlerCount = settlerCount + 1;
+						SpawnTurn = 1;
+						unitPlot = Map.GetPlot(unit:GetX(), unit:GetY());		
+					end
+				end
+
+				if settlerCount ~= targetSettlerCount then
+					local lastPlot = unitPlot;
+					lastPlot = AddSettlers(lastPlot, pPlayerUnits);
+				end
+			end
 			local pPlayerGovernors = pPlayer:GetGovernors();
 			-- Disable Settler builds
 			pPlayerUnits:SetBuildDisabled(GameInfo.Units["UNIT_SETTLER"].Index, true);
