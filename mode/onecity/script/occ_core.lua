@@ -21,6 +21,7 @@ local ms_EpicWaveInterval = 50
 local ms_MarathonWaveInterval = 66
 local NO_PLAYER = -1;
 local GOLD_REWARD = 600;
+local CS_GOLD_REWARD = 100;
 
 -- ===========================================================================
 --	GLOBAL FLAGS
@@ -223,11 +224,19 @@ function OnCityConquered(capturerID,  ownerID, cityID , cityX, cityY)
 	end
 
 	local pPlayer = Players[capturerID]
+	local capturedCityPlayer = Players[ownerID]
 
-	if pPlayer ~= nil then
+	-- Taking a city from major civilization
+	if pPlayer ~= nil and capturedCityPlayer ~= nil and capturedCityPlayer:IsMajor() == true then
 		local pGold:table = pPlayer:GetTreasury();
 		print("Award Gold to",capturerID)
 		pGold:ChangeGoldBalance(GOLD_REWARD);
+	end
+	-- Taking a city from city state
+	if pPlayer ~= nil and capturedCityPlayer ~= nil and capturedCityPlayer:IsMajor() == false then
+		local pGold:table = pPlayer:GetTreasury();
+		print("Award Gold to",capturerID)
+		pGold:ChangeGoldBalance(CS_GOLD_REWARD);
 	end
 
 end
