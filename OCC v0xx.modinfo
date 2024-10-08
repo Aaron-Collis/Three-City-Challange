@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Mod id="b26ad71c-8fe8-4fa2-886b-ad6b7f605587" version="221">
+<Mod id="b26ad71c-8fe8-4fa2-886b-ad6b7f605587" version="222">
 <!-- WIP Mod id -->
 <!-- <Mod id="b26ad71c-8fe8-4fa2-886b-ad6b7f605590" version="221"> -->
   <Properties>
@@ -15,8 +15,8 @@
   
 	<LocalizedText>
 		<Text id="LOC_OCC_TITLE">
-			<en_US>Three Cities Challenge BETA 2.2.1</en_US>
-			<fr_FR>Three Cities Challenge BETA 2.2.1</fr_FR>
+			<en_US>Three Cities Challenge BETA 2.2.2</en_US>
+			<fr_FR>Three Cities Challenge BETA 2.2.2</fr_FR>
 		</Text>
 		<Text id="LOC_OCC_TEASER">
 			<en_US>Play a fast Civilization experience with only Three cities</en_US>

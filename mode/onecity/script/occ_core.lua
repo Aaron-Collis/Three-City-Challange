@@ -299,7 +299,7 @@ function OneCity_Init()
 					end
 				end
 
-				if settlerCount ~= targetSettlerCount then
+				if unitPlot ~= nil and settlerCount ~= targetSettlerCount then
 					local lastPlot = unitPlot;
 					lastPlot = AddSettlers(lastPlot, pPlayerUnits);
 				end
