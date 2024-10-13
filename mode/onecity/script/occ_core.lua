@@ -636,7 +636,7 @@ function GetWaveUnit(iPlayerID)
 			return "UNIT_HORSEMAN", unitNumber
 		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_IRON_WORKING"].Index) then
-			return "UNIT_SWORDMAN", unitNumber
+			return "UNIT_SWORDSMAN", unitNumber
 		end
 		if playerTechs:HasTech(GameInfo.Technologies["TECH_ENGINEERING"].Index) then
 			unitNumber = unitNumber + 1
