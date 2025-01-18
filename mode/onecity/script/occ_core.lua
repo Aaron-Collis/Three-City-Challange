@@ -359,17 +359,19 @@ function OnWaveTriggered(turn)
 								for i = 1, unitNumber, 1 do
 									playerUnits:Create(unitIndex, rally_plot:GetX(), rally_plot:GetY())
 								end
-								return
+								break
 							end
 						end
 					end
 				end
 			end
-			-- No rally point so spawn in Capital City
-			local capitalCity = pPlayerCities:GetCapitalCity();
-			if capitalCity ~= nil then
-				for i = 1, unitNumber, 1 do
-					playerUnits:Create(unitIndex, capitalCity:GetX(), capitalCity:GetY())
+			if rally_plot == nil then
+				-- No rally point so spawn in Capital City
+				local capitalCity = pPlayerCities:GetCapitalCity();
+				if capitalCity ~= nil then
+					for i = 1, unitNumber, 1 do
+						playerUnits:Create(unitIndex, capitalCity:GetX(), capitalCity:GetY())
+					end
 				end
 			end
 		end

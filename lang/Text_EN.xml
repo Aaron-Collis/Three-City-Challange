@@ -40,7 +40,7 @@
 		    <Text>OUTER WALL CHARGES</Text>
         </Replace> 	
 
-		<!--- Rally Point --->	
+		<!--- Rally Point -->	
 		<Replace Tag="OCC_IMPROVEMENT_RALLY_POINT_NAME" language="en">
 		    <Text>Rally Point</Text>
         </Replace> 	
@@ -63,7 +63,7 @@
 		    <Text>Must be in your territory. [NEWLINE]Cannot be on a City, District or another Improvement</Text>
         </Replace>			
 
-		<!--- Governors --->
+		<!--- Governors -->
 		<Replace  Tag="LOC_GOVERNOR_THE_EDUCATOR_DESCRIPTION"  language="en">
 			<Text>{LOC_GOVERNOR_THE_EDUCATOR_NAME} is focused on the cultivation of [ICON_SCIENCE] Scientific endeavors in the city. Be sure to combo him with good Campus placement to maximise your [ICON_SCIENCE] Science output.</Text>
 		</Replace> 
